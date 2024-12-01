@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+*-lock.json
+
+.editorconfig
+
+bun.lockb
+package-lock.json
+yarn.lock
