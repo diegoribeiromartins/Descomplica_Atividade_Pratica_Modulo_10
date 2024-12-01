@@ -20,13 +20,13 @@ import EditarTarefa from './EditarTarefa';
 
 //A função abaixo é usada para criar o array contendo os dados iniciais da listagem de tarefas.
 function createData(
-  idTarefa: number,
-  tituloTarefa: string,
-  descricaoTarefa: string,
-  inicioTarefa: string,
-  fimTarefa: string,
-  statusTarefa: string,
-  recursoTarefa: string,
+  idTarefa,
+  tituloTarefa,
+  descricaoTarefa,
+  inicioTarefa,
+  fimTarefa,
+  statusTarefa,
+  recursoTarefa,
 ) {
   return { idTarefa, tituloTarefa, descricaoTarefa, inicioTarefa, fimTarefa, statusTarefa, recursoTarefa };
 }
@@ -56,7 +56,7 @@ const ListarTarefa = () => {
   //O array definido acima é setado como conteúdo do state Tarefas na renderização inicial do componente.
   useEffect(() => {
     setTarefas(initialRows);
-  },[]);
+  }, []);
 
   const handleEditar = (id) => {
     setIdTarefaSelecionada(id);
@@ -81,89 +81,88 @@ const ListarTarefa = () => {
     );
   };
 
-    return(
+  return (
     <>
-    <Card>
+      <Card>
         <CardHeader
           title="Tarefas"
           subheader="Listagem de Tarefas"
-        /> 
+        />
         <CardContent>
-            <TableContainer component={Paper}>
+          <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                <TableHead>
+              <TableHead>
                 <TableRow>
-                    <TableCell>#</TableCell>
-                    <TableCell>Título</TableCell>
-                    <TableCell align="right">Descrição</TableCell>
-                    <TableCell align="right">Data de Início</TableCell>
-                    <TableCell align="right">Data de Finalização</TableCell>
-                    <TableCell align="right">Status</TableCell>
-                    <TableCell align="right">Recurso</TableCell>
-                    <TableCell align="left"></TableCell>
-                    <TableCell align="left"></TableCell>
+                  <TableCell>#</TableCell>
+                  <TableCell>Título</TableCell>
+                  <TableCell align="right">Descrição</TableCell>
+                  <TableCell align="right">Data de Início</TableCell>
+                  <TableCell align="right">Data de Finalização</TableCell>
+                  <TableCell align="right">Status</TableCell>
+                  <TableCell align="right">Recurso</TableCell>
+                  <TableCell align="left"></TableCell>
+                  <TableCell align="left"></TableCell>
                 </TableRow>
-                </TableHead>
-                <TableBody>
+              </TableHead>
+              <TableBody>
                 {tarefas.map((row, indice) => (
-                    <TableRow
+                  <TableRow
                     key={indice}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                          {row.idTarefa}
-                      </TableCell>
-                      <TableCell component="th" scope="row">
-                          {row.tituloTarefa}
-                      </TableCell>
-                      <TableCell align="right">{row.descricaoTarefa}</TableCell>
-                      <TableCell align="right">{row.inicioTarefa}</TableCell>
-                      <TableCell align="right">{row.fimTarefa}</TableCell>
-                      <TableCell align="right">{row.statusTarefa}</TableCell>
-                      <TableCell align="right">{row.recursoTarefa}</TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="success" onClick={() => handleEditar(row.idTarefa)}><EditIcon fontSize="small" /></Button>            
-                      </TableCell>
-                      <TableCell align="center">
-                        <Button variant="contained" color="error" onClick={() => handleDeletar(row.idTarefa)}><DeleteIcon fontSize="small" /></Button>            
-                      </TableCell>
-                    </TableRow>
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.idTarefa}
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.tituloTarefa}
+                    </TableCell>
+                    <TableCell align="right">{row.descricaoTarefa}</TableCell>
+                    <TableCell align="right">{row.inicioTarefa}</TableCell>
+                    <TableCell align="right">{row.fimTarefa}</TableCell>
+                    <TableCell align="right">{row.statusTarefa}</TableCell>
+                    <TableCell align="right">{row.recursoTarefa}</TableCell>
+                    <TableCell align="center">
+                      <Button variant="contained" color="success" onClick={() => handleEditar(row.idTarefa)}><EditIcon fontSize="small" /></Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button variant="contained" color="error" onClick={() => handleDeletar(row.idTarefa)}><DeleteIcon fontSize="small" /></Button>
+                    </TableCell>
+                  </TableRow>
                 ))}
-                </TableBody>
+              </TableBody>
             </Table>
-            </TableContainer>
+          </TableContainer>
         </CardContent>
         <CardActions>
-            <Button size="small" variant="contained" onClick={handleOpen}>Criar Tarefa</Button>
-            <Button size="small" variant="outlined">Cancelar</Button>
-      </CardActions> 
-    </Card>
-    <div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div>
-          <CriarTarefa handleClose={handleClose} tarefas={tarefas} setTarefas={setTarefas} />
-        </div>
-      </Modal>  
-    </div>
-    <div>
-      <Modal
-        open={openEditar}
-        onClose={handleCloseEditar}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div>
-          <EditarTarefa handleCloseEditar={handleCloseEditar} idTarefaSelecionada={idTarefaSelecionada} tarefas={tarefas} tarefa={tarefa} setTarefas={setTarefas} />
-        </div>
-      </Modal>  
-    </div>
-  </>    
- );
+          <Button size="small" variant="contained" onClick={handleOpen}>Criar Tarefa</Button>
+        </CardActions>
+      </Card>
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <div>
+            <CriarTarefa handleClose={handleClose} tarefas={tarefas} setTarefas={setTarefas} />
+          </div>
+        </Modal>
+      </div>
+      <div>
+        <Modal
+          open={openEditar}
+          onClose={handleCloseEditar}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <div>
+            <EditarTarefa handleCloseEditar={handleCloseEditar} idTarefaSelecionada={idTarefaSelecionada} tarefas={tarefas} tarefa={tarefa} setTarefas={setTarefas} />
+          </div>
+        </Modal>
+      </div>
+    </>
+  );
 };
- 
+
 export default ListarTarefa;
